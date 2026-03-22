@@ -208,6 +208,21 @@ graph_builder.add_node("analyze_bing_results", analyze_bing_results)
 graph_builder.add_node("analyze_reddit_results", analyze_reddit_results)
 graph_builder.add_node("synthesize_analyses", synthesize_analyses)
 
+
+###  1. Only for google and bing:
+# graph_builder.add_edge(START, "google_search")
+# graph_builder.add_edge(START, "bing_search")
+
+# graph_builder.add_edge("google_search", "analyze_google_results")
+# graph_builder.add_edge("bing_search", "analyze_bing_results")
+
+# graph_builder.add_edge("analyze_google_results", "synthesize_analyses")
+# graph_builder.add_edge("analyze_bing_results", "synthesize_analyses")
+
+# graph_builder.add_edge("synthesize_analyses", END)
+
+
+###  2. For google, bing, and reddit:
 graph_builder.add_edge(START, "google_search")
 graph_builder.add_edge(START, "bing_search")
 graph_builder.add_edge(START, "reddit_search")
@@ -226,6 +241,8 @@ graph_builder.add_edge("analyze_bing_results", "synthesize_analyses")
 graph_builder.add_edge("analyze_reddit_results", "synthesize_analyses")
 
 graph_builder.add_edge("synthesize_analyses", END)
+
+
 
 graph = graph_builder.compile()
 
