@@ -223,17 +223,36 @@ graph_builder.add_node("synthesize_analyses", synthesize_analyses)
 
 
 ###  2. For google, bing, and reddit:
+# graph_builder.add_edge(START, "google_search")
+# graph_builder.add_edge(START, "bing_search")
+# graph_builder.add_edge(START, "reddit_search")
+
+# graph_builder.add_edge("google_search", "analyze_reddit_posts")
+# graph_builder.add_edge("bing_search", "analyze_reddit_posts")
+# graph_builder.add_edge("reddit_search", "analyze_reddit_posts")
+# graph_builder.add_edge("analyze_reddit_posts", "retrieve_reddit_posts")
+
+# graph_builder.add_edge("retrieve_reddit_posts", "analyze_google_results")
+# graph_builder.add_edge("retrieve_reddit_posts", "analyze_bing_results")
+# graph_builder.add_edge("retrieve_reddit_posts", "analyze_reddit_results")
+
+# graph_builder.add_edge("analyze_google_results", "synthesize_analyses")
+# graph_builder.add_edge("analyze_bing_results", "synthesize_analyses")
+# graph_builder.add_edge("analyze_reddit_results", "synthesize_analyses")
+
+# graph_builder.add_edge("synthesize_analyses", END)
+
+
+# 3. For google, bing, and reddit without blocking:
 graph_builder.add_edge(START, "google_search")
 graph_builder.add_edge(START, "bing_search")
 graph_builder.add_edge(START, "reddit_search")
 
-graph_builder.add_edge("google_search", "analyze_reddit_posts")
-graph_builder.add_edge("bing_search", "analyze_reddit_posts")
+graph_builder.add_edge("google_search", "analyze_google_results")
+graph_builder.add_edge("bing_search", "analyze_bing_results")
+
 graph_builder.add_edge("reddit_search", "analyze_reddit_posts")
 graph_builder.add_edge("analyze_reddit_posts", "retrieve_reddit_posts")
-
-graph_builder.add_edge("retrieve_reddit_posts", "analyze_google_results")
-graph_builder.add_edge("retrieve_reddit_posts", "analyze_bing_results")
 graph_builder.add_edge("retrieve_reddit_posts", "analyze_reddit_results")
 
 graph_builder.add_edge("analyze_google_results", "synthesize_analyses")
@@ -241,8 +260,6 @@ graph_builder.add_edge("analyze_bing_results", "synthesize_analyses")
 graph_builder.add_edge("analyze_reddit_results", "synthesize_analyses")
 
 graph_builder.add_edge("synthesize_analyses", END)
-
-
 
 graph = graph_builder.compile()
 
